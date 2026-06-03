@@ -1,32 +1,34 @@
 class Vehicle:
 
-    vehicle_brand = String
-    vehicle_model = String
+    count = 0
+    total_mileage = 0
 
-    def _init__(self, make, model):
+    def __init__ (self, make, model, year, mileage):
         self.make = make
         self.model = model
+        self.year = year
+        self.mileage = mileage
         Vehicle.count += 1
-        Vehnical.total_vehicles += 1
+        Vehicle.total_mileage += mileage
 
-    def display_info(self):
-        return f"{self.make} {self.model}"
+    def get_info(self):
+        return f"{self.make} {self.model} {self.year} {self.mileage}"  
     
 
     @classmethod
-    def get_vehicle_count(cls):
-        return f" Total Vehcicles Created: {cls.count}"
+    def get_count(cls):
+        return f"Total number of vehicles: {cls.count}"
     
     @classmethod
-    def get_average_vehicles(cls):
-        if cls.total_vehicles == 0:
-            return "No vehicles created yet."
-        else:
-            average = cls.count / cls.total_vehicles
-            return f"Average Vehicles per Creation: {average:.2f}"
-    
-vehicle1 =Vehicle("Volkswagen", "Jetta")
-vehicle2 =Vehicle("Mercedes-Benz", "C63 AMG")
-vehicle3 =Vehicle("BMW", "M3 Competition")
+    def get_average_mileage(cls):
+        if cls.count == 0:
+            return 0
+        return cls.total_mileage / cls.count
 
-print (Vehicle.get_vehicle_count())
+vehicle1 = Vehicle ("Volkswagen", "Jetta", "2024", 36550)
+vehicle2 = Vehicle ("Lamborghini", "Urus", "2026", 12000)
+vehicle3 = Vehicle ("Mercedes-Benz", "AMG C63", "2025", 56000)
+vehicle4 = Vehicle ("Honda", "Civic", "2002", 200000 )
+
+print (Vehicle.get_count())
+print (Vehicle.get_average_mileage())
